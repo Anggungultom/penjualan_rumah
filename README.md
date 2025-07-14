@@ -1,60 +1,148 @@
-# CodeIgniter 4 Framework
+# penjualan_rumah
+# Jual Beli Rumah 
 
-## What is CodeIgniter?
+  Rumah Impian adalah platform web modern yang dirancang untuk mempermudah proses jual beli properti. Repositori ini berisi kode *back-end* yang berfungsi sebagai API untuk mengelola data properti. Aplikasi ini menyediakan antarmuka yang intuitif bagi pengguna untuk menjelajahi daftar rumah dijual, melihat detail lengkap, serta bagi penjual untuk dengan mudah menambah, mengedit, dan menghapus properti mereka. Dibangun dengan CodeIgniter 4 untuk API *back-end* yang robust.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+<img width="1219" height="431" alt="image" src="https://github.com/user-attachments/assets/fc443302-4692-4095-bfa3-7eb826e30fd4" />
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+-----
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### **Langkah Utama:**
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+1.  **Buat Proyek CodeIgniter 4 Baru:** Jika Anda belum memilikinya, buat proyek CI4 baru. Anda bisa mengunduhnya dari situs resmi CodeIgniter atau menggunakan Composer:
+    ```bash
+    composer create-project codeigniter4/appstarter nama-proyek-rumah
+    cd nama-proyek-rumah
+    ```
+2.  **Edit File `.env`:** Duplikasi `.env.example` menjadi `.env` dan konfigurasikan detail database Anda.
+3.  **Jalankan `composer install`:** Pastikan semua dependensi terinstal.
 
-## Important Change with index.php
+-----
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+#### **1. File `.env` (di root proyek Anda)**
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Edit file ini. Jika Anda belum punya, duplikasi `env.example` menjadi `.env` terlebih dahulu.
 
-## Repository Management
+```env
+#--------------------------------------------------------------------------
+# ENVIRONMENT
+#--------------------------------------------------------------------------
+CI_ENVIRONMENT = development
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+#--------------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------------
+app.baseURL = 'http://localhost:8080/' # Sesuaikan ini jika Anda menggunakan port lain atau domain lain
+app.indexPage = '' # Ini agar URL Anda bersih (tanpa index.php)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+#--------------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------------
+database.default.hostname = localhost
+database.default.database = nama_database_anda # <--- GANTI INI DENGAN NAMA DATABASE ANDA
+database.default.username = root             # <--- GANTI INI DENGAN USERNAME DATABASE ANDA
+database.default.password = ''               # <--- GANTI INI DENGAN PASSWORD DATABASE ANDA (kosongkan jika tidak ada)
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.pConnect = false
+database.default.DBDebug = true
+database.default.charset = utf8
+database.default.DBCollat = utf8_general_ci
+database.default.swapPre =
+database.default.encrypt = false
+database.default.compress = false
+database.default.strictOn = false
+database.default.failover = []
+database.default.port = 3306
 
-## Contributing
+#--------------------------------------------------------------------------
+# HACKING PREVENTION
+#--------------------------------------------------------------------------
+# csrf.tokenName = csrf_test_name
+# csrf.headerName = X-CSRF-TOKEN
+# csrf.cookieName = csrf_cookie_name
+# csrf.expires = 7200
+# csrf.regenerate = true
+# csrf.excludeURIs = []
+# csrf.methods = ['POST','PUT','DELETE']
 
-We welcome contributions from the community.
+# Content Security Policy
+# csp.enabled = false
+```
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+#### **2. File Migrasi Database (`app/Database/Migrations/`)**
 
-## Server Requirements
+Jalankan perintah ini di terminal dari root proyek CI4 Anda untuk membuat file migrasi kosong:
+`php spark make:migration CreateHousesTable`
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+Kemudian, buka file yang baru dibuat (nama filenya akan seperti `YYYY-MM-DD-HHMMSS_CreateHousesTable.php`) di folder `app/Database/Migrations/` 
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+#### **3. File Controller API (`app/Controllers/Api/Houses.php`)**
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+Buat folder `Api` di dalam `app/Controllers/` jika belum ada.
+Kemudian, buat file baru di `app/Controllers/Api/Houses.php` 
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### **4. Kode untuk Fungsi "Detail Rumah"**
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Fungsi ini digunakan untuk mengambil data spesifik satu rumah berdasarkan ID-nya. Ini sesuai dengan tampilan "Rumah Minimalis 2 Lantai di Cibubur" yang menunjukkan detail lengkap satu properti.
+
+![WhatsApp Image 2025-07-12 at 20 18 25_804b6924](https://github.com/user-attachments/assets/94ffb8f6-5266-4874-87a8-14b042b3bfb1)
+
+
+-----
+
+### **5. Kode untuk Fungsi "Tambah Rumah"**
+
+Fungsi ini bertanggung jawab untuk menerima data dari formulir "Tambah Rumah" dan menyimpannya sebagai entri baru di database.
+
+![WhatsApp Image 2025-07-12 at 20 19 47_f5146823](https://github.com/user-attachments/assets/b04c0217-8efd-408b-8933-e18944f7b1cf)
+
+
+-----
+
+### **6. Kode untuk Fungsi "Edit Rumah" **
+
+Fungsi ini digunakan untuk memperbarui data rumah yang sudah ada. Ini sesuai dengan tampilan formulir "Edit Rumah".
+
+![WhatsApp Image 2025-07-12 at 20 23 11_e1f86305](https://github.com/user-attachments/assets/ba698799-cc8f-4354-bdd7-9b8ff8a4593a)
+
+
+#### **7. File Routes (`app/Config/Routes.php`)**
+
+**Lokasi File:** `app/Config/Routes.php`
+
+
+## Fitur Utama API:
+* **CRUD Properti:** Endpoint untuk Menambah (Create), Membaca (Read), Memperbarui (Update), dan Menghapus (Delete) data rumah.
+* **Listing Dinamis:** Menyediakan data daftar rumah untuk ditampilkan di *front-end*.
+* **Detail Properti:** Mengembalikan detail lengkap satu properti berdasarkan ID.
+* Respons API dalam format JSON.
+
+## Teknologi yang Digunakan:
+* **Back End Framework:** CodeIgniter 4 (PHP)
+* **Database:** MySQL / PostgreSQL
+* **Server:** PHP Development Server (untuk pengembangan), Nginx/Apache (untuk produksi)
+
+## Instalasi dan Menjalankan Proyek (Back-end):
+
+1.  **Instal dependensi Composer:**
+    ```bash
+    composer install
+    ```
+
+2.  **Konfigurasi Environment:**
+    * Duplikasi `.env.example` menjadi `.env`: `cp .env.example .env`
+    * Buka file `.env` dan konfigurasikan detail database Anda (DB driver, hostname, database name, username, password).
+
+3.  **Jalankan Migrasi Database:**
+    Ini akan membuat tabel `houses` di database Anda.
+    ```bash
+    php spark migrate
+    ```
+
+4.  **Jalankan Server Pengembangan CodeIgniter:**
+    ```bash
+    php spark serve
+    ```
+    API akan berjalan di `http://localhost:8080` (atau port lain yang ditampilkan).
