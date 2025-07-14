@@ -1,4 +1,3 @@
-# penjualan_rumah
 # Jual Beli Rumah 
 
   Rumah Impian adalah platform web modern yang dirancang untuk mempermudah proses jual beli properti. Repositori ini berisi kode *back-end* yang berfungsi sebagai API untuk mengelola data properti. Aplikasi ini menyediakan antarmuka yang intuitif bagi pengguna untuk menjelajahi daftar rumah dijual, melihat detail lengkap, serta bagi penjual untuk dengan mudah menambah, mengedit, dan menghapus properti mereka. Dibangun dengan CodeIgniter 4 untuk API *back-end* yang robust.
