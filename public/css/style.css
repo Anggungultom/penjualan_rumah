@@ -1,1 +1,315 @@
+/* Base reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #ffffff);
+    color: #2c3e50;
+    padding: 40px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Header */
+h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #34495e;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn {
+    display: inline-block;
+    background: #1abc9c;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #16a085;
+}
+
+/* Rumah Card Layout */
+.rumah-item {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 25px;
+    border-radius: 16px;
+    background: #f9f9f9;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.rumah-item:hover {
+    transform: translateY(-5px);
+}
+
+.rumah-item img {
+    width: 320px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #e0e0e0;
+}
+
+.rumah-info {
+    flex: 1;
+}
+
+.rumah-info h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.rumah-info p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.rumah-actions {
+    margin-top: 15px;
+}
+
+.rumah-actions a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.rumah-actions a:hover {
+    text-decoration: underline;
+}
+
+/* Kontak Section */
+.kontak-penjual {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eaf4f8;
+    border-left: 5px solid #1abc9c;
+    border-radius: 10px;
+}
+
+.kontak-penjual ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.kontak-penjual li {
+    margin-bottom: 8px;
+}
+
+.kontak-penjual a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.kontak-penjual a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Detail Rumah */
+.detail-container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin-top: 40px;
+}
+
+.detail-title {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.detail-info p {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+.back-btn {
+    display: inline-block;
+    background: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #2980b9;
+}
+
+.detail-kontak {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f0f8ff;
+    border-left: 5px solid #1abc9c;
+    border-radius: 10px;
+}
+
+.detail-kontak p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detail-kontak ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.detail-kontak li {
+    margin-bottom: 6px;
+}
+
+/* INTRO SECTION TAMBAHAN */
+/* INTRO SECTION TAMBAHAN - VERSI MEWAH */
+.intro-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(to right, #ffffff, #f4f9fc);
+    padding: 35px 45px;
+    border: 1px solid #dceefc;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    animation: fadeInUp 0.8s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(26,188,156,0.15) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.intro-icon {
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.intro-icon img {
+    width: 90px;
+    height: 90px;
+    padding: 20px;
+    background: #1abc9c;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(26,188,156,0.3);
+}
+
+.intro-text {
+    flex: 1;
+    z-index: 1;
+}
+
+.intro-text p {
+    font-size: 17px;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    line-height: 1.75;
+    font-weight: 500;
+}
+
+.intro-text strong {
+    color: #1abc9c;
+    font-weight: 700;
+    font-size: 18px;
+}
+/* ======= FORM TAMBAH RUMAH ======= */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+}
+
+form p {
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #34495e;
+    font-size: 16px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form input[type="file"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dce3ea;
+    border-radius: 10px;
+    background: #f9fcfe;
+    font-size: 15px;
+    color: #2c3e50;
+    transition: border 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form textarea:focus {
+    border-color: #1abc9c;
+    outline: none;
+}
+
+form button[type="submit"] {
+    background: #1abc9c;
+    color: #fff;
+    padding: 14px 26px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+form button[type="submit"]:hover {
+    background: #16a085;
+}
