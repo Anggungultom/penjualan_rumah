@@ -22,18 +22,7 @@
 #### **1. File `.env` (di root proyek Anda)**
 
 Edit file ini. Jika Anda belum punya, duplikasi `env.example` menjadi `.env` terlebih dahulu.
-
-```env
-#--------------------------------------------------------------------------
-# ENVIRONMENT
-#--------------------------------------------------------------------------
-CI_ENVIRONMENT = development
-
-#--------------------------------------------------------------------------
-# APP
-#--------------------------------------------------------------------------
-app.baseURL = 'http://localhost:8080/' # Sesuaikan ini jika Anda menggunakan port lain atau domain lain
-app.indexPage = '' # Ini agar URL Anda bersih (tanpa index.php)
+```
 
 #--------------------------------------------------------------------------
 # DATABASE
@@ -42,32 +31,7 @@ database.default.hostname = localhost
 database.default.database = nama_database_anda # <--- GANTI INI DENGAN NAMA DATABASE ANDA
 database.default.username = root             # <--- GANTI INI DENGAN USERNAME DATABASE ANDA
 database.default.password = ''               # <--- GANTI INI DENGAN PASSWORD DATABASE ANDA (kosongkan jika tidak ada)
-database.default.DBDriver = MySQLi
-database.default.DBPrefix =
-database.default.pConnect = false
-database.default.DBDebug = true
-database.default.charset = utf8
-database.default.DBCollat = utf8_general_ci
-database.default.swapPre =
-database.default.encrypt = false
-database.default.compress = false
-database.default.strictOn = false
-database.default.failover = []
-database.default.port = 3306
 
-#--------------------------------------------------------------------------
-# HACKING PREVENTION
-#--------------------------------------------------------------------------
-# csrf.tokenName = csrf_test_name
-# csrf.headerName = X-CSRF-TOKEN
-# csrf.cookieName = csrf_cookie_name
-# csrf.expires = 7200
-# csrf.regenerate = true
-# csrf.excludeURIs = []
-# csrf.methods = ['POST','PUT','DELETE']
-
-# Content Security Policy
-# csp.enabled = false
 ```
 
 #### **2. File Migrasi Database (`app/Database/Migrations/`)**
